@@ -1,6 +1,8 @@
 import logging
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+import os
+PORT = int(os.environ.get('PORT', 5000))
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -11,20 +13,16 @@ logger = logging.getLogger(__name__)
 
 TOKEN = '1510228902:AAFovuJjk5KnWICSqQxmSl9khxAXHQZhz_E'
 
-# Define a few command handlers. These usually take the two arguments update and
-# context. Error handlers also receive the raised TelegramError object in error.
 def start(update, context):
-    """Send a message when the command /start is issued."""
     update.message.reply_text('Hi!')
 
 
 def help(update, context):
-    """Send a message when the command /help is issued."""
     update.message.reply_text('Help!')
 
 
 def echo(update, context):
-    """Echo the user message."""
+    """Reemplaza las vocales por la i, ya sea minúscula, mayuscola, con o sin tilde"""
 
     texto1 = update.message.text
 
@@ -52,15 +50,10 @@ def echo(update, context):
 
 
 def error(update, context):
-    """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
 
 def main():
-    """Start the bot."""
-    # Create the Updater and pass it your bot's token.
-    # Make sure to set use_context=True to use the new context based callbacks
-    # Post version 12 this will no longer be necessary
     updater = Updater(TOKEN, use_context=True)
 
     # Get the dispatcher to register handlers
@@ -78,7 +71,10 @@ def main():
     dp.add_error_handler(error)
 
     # Start the Bot
-    updater.start_polling()
+    updater.start_webhook(listen="0.0.0.0",
+                          port=int(PORT),
+                          url_path=TOKEN)
+    updater.bot.setWebhook('https://yinidijiisibot.herokuapp.com/' + TOKEN)
 
     print('Ejecutandose')
 
