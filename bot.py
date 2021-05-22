@@ -26,27 +26,15 @@ def echo(update, context):
 
     texto1 = update.message.text
 
-    texto2 = texto1.replace("a", "i")
-    texto3 = texto2.replace("e", "i")
-    texto4 = texto3.replace("o", "i")
-    texto5 = texto4.replace("u", "i")
+    texto2 = texto1.replace("a", "i").replace("e", "i").replace("o", "i").replace("u", "i")
 
-    texto6 = texto5.replace("A", "I")
-    texto7 = texto6.replace("E", "I")
-    texto8 = texto7.replace("O", "I")
-    texto9 = texto8.replace("U", "I")
+    texto3 = texto2.replace("A", "I").replace("E", "I").replace("O", "I").replace("U", "I")
 
-    texto10 = texto9.replace("á", "í")
-    texto11 = texto10.replace("é", "í")
-    texto12 = texto11.replace("ó", "í")
-    texto13 = texto12.replace("ú", "í")
+    texto4 = texto3.replace("á", "í").replace("é", "í").replace("ó", "í").replace("ú", "í")
 
-    texto14 = texto13.replace("Á", "Í")
-    texto15 = texto14.replace("É", "Í")
-    texto16 = texto15.replace("Ó", "Í")
-    texto17 = texto16.replace("Ú", "Í")
-
-    update.message.reply_text(texto17, quote=False)
+    texto5 = texto4.replace("Á", "Í").replace("É", "Í").replace("Ó", "Í").replace("Ú", "Í")
+    
+    update.message.reply_text(texto5, quote=False)
 
 
 def error(update, context):
