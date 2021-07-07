@@ -19,6 +19,9 @@ def start(update, context):
 
 def help(update, context):
     update.message.reply_text('Help!')
+    
+def link(update, context):
+    update.message.reply_text('meet.google.com/vim-fsoe-nmz')
 
 
 def echo(update, context):
@@ -53,6 +56,7 @@ def main():
     dp.add_handler(CommandHandler("help", help))
     '''
     # on noncommand i.e message - echo the message on Telegram
+    dp.add_handler(CommandHandler("link", link))
     dp.add_handler(MessageHandler(Filters.text, echo))
 
     # log all errors
